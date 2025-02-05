@@ -12,33 +12,33 @@ const supabase = createClient(
 
 // Register Route
 router.post('/register', async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
   try {
-    const { data, error } = await supabase.auth.signUp({ email, password })
+    const { data, error } = await supabase.auth.signUp({ email, password });
     if (error) {
-      return res.status(400).json({ message: error.message })
+      return res.status(400).json({ message: error.message });
     }
-    res.status(201).json({ message: 'User registered successfully', data })
+    res.status(201).json({ message: 'User registered successfully', data });
   } catch (err) {
-    res.status(500).json({ message: 'Internal server error', error: err.message })
+    res.status(500).json({ message: 'Internal server error', error: err.message });
   }
-})
+});
 
 // Login Route
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
-      return res.status(401).json({ message: error.message })
+      return res.status(401).json({ message: error.message });
     }
-    res.status(200).json({ message: 'Login successful', data })
+    res.status(200).json({ message: 'Login successful', data });
   } catch (err) {
-    res.status(500).json({ message: 'Internal server error', error: err.message })
+    res.status(500).json({ message: 'Internal server error', error: err.message });
   }
-})
+});
 
 // Validate Token (Optional)
 router.get('/validate', async (req, res) => {
